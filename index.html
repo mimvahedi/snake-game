@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>SNAKE</title>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <div class="game-wrapper">
+        <div class="game-touch-wrapper"></div>
+    </div>
+    <div class="score-container"></div>
+    <button class="btn stop-btn" data-onclick="stop">| |</button>
+    <div class="menu-container hide">
+        <div class="menu-header">
+            <h1 class="menu-title">بازی مارا</h1>
+            <div class="menu-subtitle">بالاترین امتیاز: ۰</div>
+        </div>
+        <nav class="game-menu start-menu" data-menu="start">
+            <button class="btn menu-btn" data-onclick="restart" data-speed="250">آسان</button>
+            <button class="btn menu-btn" data-onclick="restart" data-speed="150">متوسط</button>
+            <button class="btn menu-btn" data-onclick="restart" data-speed="75">سخت</button>
+            <hr class="o0">
+            <a href="#">دربارهٔ بازی</a>
+        </nav>
+        <nav class="game-menu stop-menu" data-menu="stop">
+            <button class="btn menu-btn" data-onclick="start">ادامه بازی</button>
+            <button class="btn menu-btn" data-onclick="displayMenu" data-menu="start">خروح از بازی</button>
+        </nav>
+    </div>
+</body>
+
+</html>
+
+
+
+<body>
+
+
+</body>
