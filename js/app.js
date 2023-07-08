@@ -1,8 +1,8 @@
 "use strict";
 let scale = 16;
 let docrect = document.documentElement.getBoundingClientRect()
-let rows = Math.ceil(docrect.height / scale)
-let cols = Math.ceil(docrect.width / scale)
+let rows = Math.min(30, Math.ceil(docrect.height / scale))
+let cols = Math.min(30, Math.ceil(docrect.width / scale))
 
 
 function createTable(rows, cols) {
