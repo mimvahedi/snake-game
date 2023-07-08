@@ -1,5 +1,8 @@
 "use strict";
-let rows = 20;
+let scale = 16;
+let docrect = document.documentElement.getBoundingClientRect()
+let rows = Math.ceil(docrect.height / scale)
+let cols = Math.ceil(docrect.width / scale)
 
 
 function createTable(rows, cols) {
@@ -16,7 +19,7 @@ function createTable(rows, cols) {
 
   document.body.querySelector(".game-wrapper").appendChild(tableElement)
 }
-createTable(rows, rows)
+createTable(rows, cols)
 const table = document.querySelector(".table");
 
 
@@ -29,7 +32,7 @@ function random(min, max) {
 function randomPosition() {
   return [
     random(0, rows),
-    random(0, rows),
+    random(0, cols),
   ];
 }
 
@@ -81,10 +84,10 @@ function tic() {
   ]
 
   if (newHead[0] >= rows) newHead[0] = 0;
-  if (newHead[1] >= rows) newHead[1] = 0;
+  if (newHead[1] >= cols) newHead[1] = 0;
 
   if (newHead[0] < 0) newHead[0] = rows - 1;
-  if (newHead[1] < 0) newHead[1] = rows - 1;
+  if (newHead[1] < 0) newHead[1] = cols - 1;
 
   //console.log(snake.dots.map(d => `[${String(d[0]).padStart(2, "0")},${String(d[1]).padStart(2, "0")}]`).join("-"))
 
@@ -204,6 +207,7 @@ function restart() {
   coinPosition = addRandomCoin()
   gameOver = false
   score = 0
+  document.querySelector(".score-container").textContent = score
   start()
 }
 

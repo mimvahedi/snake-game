@@ -58,7 +58,7 @@ hr.o0 {
 td {
   width: 1em;
   height: 1em;
-  font-size: max(3vmin, 1rem);
+  font-size: 16px;
 }
 .coin {
   background: rgb(255, 196, 0);
@@ -89,6 +89,8 @@ td {
   top: 1rem;
   left: 1rem;
   z-index: 9;
+  aspect-ratio: 1;
+  border-radius: 50% !important;
 }
 
 .btn {
@@ -100,7 +102,7 @@ td {
   line-height: 1;
   font-size: 1rem;
   font-family: inherit;
-  border: 2px solid;
+  border: 1px solid;
   padding: 0.5em 0.75em;
   border-radius: 0;
   cursor: pointer;
@@ -109,8 +111,9 @@ td {
 .btn-lg {
   font-size: 1.25rem;
 }
-.btn:hover {
-  background: hsla(206, 96%, 59%, 0.133);
+.btn:hover, .btn:focus {
+  box-shadow: 0 0;
+  transform: translateY(.25em)
 }
 
 .menu-container {
@@ -148,7 +151,11 @@ td {
 .menu-btn {
   display: block;
   width: 100%;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background: linear-gradient(to bottom,#0087ff,#0058ff);
+  color: #fff;
+  box-shadow: 0 .25em, inset 0 0 4px #0004;
 }
 .playing .game-touch-wrapper {
   position: fixed;
