@@ -85,12 +85,23 @@ td {
   line-height: 1;
 }
 .stop-btn {
+  color: currentColor;
   position: fixed;
   top: 1rem;
   left: 1rem;
   z-index: 9;
-  aspect-ratio: 1;
   border-radius: 50% !important;
+  border: none;
+  background: transparent;
+}
+.stop-btn::before{
+    width: .3em;
+    height: 1em;
+    content: "";
+    border: currentColor solid;
+    border-width: 0 .35em 0 .35em;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .btn {
