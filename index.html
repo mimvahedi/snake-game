@@ -26,11 +26,17 @@
             <button class="btn menu-btn" data-onclick="restart" data-speed="150">متوسط</button>
             <button class="btn menu-btn" data-onclick="restart" data-speed="75">سخت</button>
             <hr class="o0">
-            <a href="#">دربارهٔ بازی</a>
+            <a data-onclick="displayMenu" data-menu="about">دربارهٔ بازی</a>
         </nav>
         <nav class="game-menu stop-menu" data-menu="stop">
             <button class="btn menu-btn" data-onclick="start">ادامه بازی</button>
             <button class="btn menu-btn" data-onclick="displayMenu" data-menu="start">خروج از بازی</button>
+        </nav>
+        <nav class="game-menu about-menu" data-menu="about">
+            <p>توسعه دهنده: محمدمهدی واحدی</p>
+            <a class="btn menu-btn" href="https://mimvahedi.github.io">سایر پروژه‌ها</a>
+            <hr class="o0">
+            <button class="btn menu-btn" class="btn menu-btn" data-onclick="displayMenu" data-menu="start">بازگشت</button>
         </nav>
     </div>
 </body>
