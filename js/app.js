@@ -169,10 +169,8 @@ function init() {
 
   document.addEventListener("touchend", draggable.ontouchend)
   document.addEventListener("touchstart", draggable.ontouchstart)
-  document.addEventListener("ontouchmove", draggable.ontouchmove)
   document.addEventListener("pointerup", draggable.ontouchend)
   document.addEventListener("pointerdown", draggable.ontouchstart)
-  document.addEventListener("pointermove", draggable.ontouchmove)
 
   displayMenu("start")
 }
@@ -229,11 +227,7 @@ draggable.ontouchstart = (e) => {
   }
 };
 
-draggable.ontouchend = () => {
-  draggable.pointerDown = false;
-};
-
-draggable.ontouchmove = (e) => {
+draggable.ontouchend = (e) => {
   if (!draggable.pointerDown) return;
   let newJahat;
   let { x, y } = (e || { x: e.touches[0].clinetX, y: e.touches[0].clinetY })
