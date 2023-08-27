@@ -63,15 +63,19 @@ td {
 .coin {
   background: rgb(255, 196, 0);
   border-radius: 50%;
+  animation: coin 125ms;
 }
 .snake-body {
   background: #fff;
 }
 
-.snake-head {
-}
 .coin.snake-body {
   transform: scale(1.33);
+}
+@keyframes coin{
+  from{
+    transform: scale(0)
+  }
 }
 
 /*ui*/
@@ -159,7 +163,16 @@ td {
 }
 .game-menu.show {
   display: block;
+  animation: menu-show 250ms ease;
+  transform-origin: top center;
 }
+
+@keyframes menu-show {
+  0%{
+    transform: scale(0);
+  }
+}
+
 .menu-btn {
   display: block;
   width: 100%;
