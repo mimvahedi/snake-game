@@ -3,7 +3,7 @@ let scale = 16;
 let docrect = document.documentElement.getBoundingClientRect()
 let rows = Math.min(30, Math.ceil(docrect.height / scale))
 let cols = Math.min(30, Math.ceil(docrect.width / scale))
-
+let gameWrapper = document.body.querySelector(".game-wrapper")
 
 function createTable(rows, cols) {
   let tableElement = document.createElement("table")
@@ -17,7 +17,7 @@ function createTable(rows, cols) {
     tableElement.appendChild(tr)
   }
 
-  document.body.querySelector(".game-wrapper").appendChild(tableElement)
+  gameWrapper.appendChild(tableElement)
 }
 createTable(rows, cols)
 const table = document.querySelector(".table");
@@ -93,8 +93,6 @@ function tic() {
 
   if (snake.dots.map(d => `[${d[0]}-${d[1]}]`).includes(`[${newHead[0]}-${newHead[1]}]`)) {
     onGameOver()
-    gameOver = true
-    stop()
   }
 
   if (gameOver) return
@@ -114,10 +112,12 @@ function tic() {
 }
 
 function onGameOver() {
-  table.classList.add("lose")
+  gameOver = true
+  stop()
+  gameWrapper.classList.add("lose")
   setTimeout(() => {
     displayMenu("start", { title: "باختی", subtitle: `امتیاز: ${score}` })
-    table.classList.remove("lose")
+    gameWrapper.classList.remove("lose")
   }, 750);
   if (score > bestScore) {
     bestScore = score;
