@@ -92,7 +92,7 @@ function tic() {
   //console.log(snake.dots.map(d => `[${String(d[0]).padStart(2, "0")},${String(d[1]).padStart(2, "0")}]`).join("-"))
 
   if (snake.dots.map(d => `[${d[0]}-${d[1]}]`).includes(`[${newHead[0]}-${newHead[1]}]`)) {
-    displayMenu("start", { title: "باختی", subtitle: `امتیاز: ${score}` })
+    onGameOver()
     gameOver = true
     stop()
   }
@@ -106,11 +106,23 @@ function tic() {
     sounds.coin.play()
     coinPosition = addRandomCoin();
     score++
-    document.querySelector(".score-container").textContent = score
+    document.querySelector(".current-score").textContent = score
   } else {
     snake.dots = snake.dots.slice(1)
   }
   snake.draw()
+}
+
+function onGameOver() {
+  table.classList.add("lose")
+  setTimeout(() => {
+    displayMenu("start", { title: "باختی", subtitle: `امتیاز: ${score}` })
+    table.classList.remove("lose")
+  }, 750);
+  if (score > bestScore) {
+    bestScore = score;
+    localStorage.setItem("bestScore", bestScore)
+  }
 }
 
 let coinPosition;
@@ -121,9 +133,10 @@ let gameStoped = true;
 let gameOver = true;
 let speed = 100;
 let score = 0;
+let bestScore = Number(localStorage.getItem("bestScore")) || 0;
 let sounds = {
-  coin : seda("./assets/coin.wav"),
-  button : seda("./assets/button.wav"),
+  coin: seda("./assets/coin.wav"),
+  button: seda("./assets/button.wav"),
 }
 
 function init() {
@@ -142,14 +155,14 @@ function init() {
         gameOver ? displayMenu("start") : (hideMenu() + start())
       } else {
         stop();
-      } 
+      }
     }
   })
 
   for (const btn of document.querySelectorAll("[data-onclick]")) {
     btn.addEventListener("click", () => {
       sounds.button.play()
-      
+
       switch (btn.dataset.onclick) {
         case "restart":
           hideMenu()
@@ -211,7 +224,8 @@ function restart() {
   coinPosition = addRandomCoin()
   gameOver = false
   score = 0
-  document.querySelector(".score-container").textContent = score
+  document.querySelector(".current-score").textContent = score
+  document.querySelector(".best-score").textContent = bestScore
   start()
 }
 

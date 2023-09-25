@@ -55,6 +55,11 @@ hr.o0 {
   border-spacing: 0;
   position: relative;
 }
+.table.lose {
+  transition: background 500ms ease;
+  background: #949494;
+}
+
 td {
   width: 1em;
   height: 1em;
@@ -72,9 +77,9 @@ td {
 .coin.snake-body {
   transform: scale(1.33);
 }
-@keyframes coin{
-  from{
-    transform: scale(0)
+@keyframes coin {
+  from {
+    transform: scale(0);
   }
 }
 
@@ -85,9 +90,16 @@ td {
   right: 1rem;
   top: 1rem;
   color: #fff;
-  font-size: 1.5rem;
   line-height: 1;
+  text-align: right;
 }
+.current-score {
+  font-size: 1.5rem;
+}
+.best-score {
+  opacity: 0.66;
+}
+
 .stop-btn {
   color: currentColor;
   position: fixed;
@@ -99,14 +111,14 @@ td {
   border: none;
   background: transparent;
 }
-.stop-btn::before{
-    width: .3em;
-    height: 1em;
-    content: "";
-    border: currentColor solid;
-    border-width: 0 .35em 0 .35em;
-    display: inline-block;
-    vertical-align: middle;
+.stop-btn::before {
+  width: 0.3em;
+  height: 1em;
+  content: "";
+  border: currentColor solid;
+  border-width: 0 0.35em 0 0.35em;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .btn {
@@ -127,9 +139,10 @@ td {
 .btn-lg {
   font-size: 1.25rem;
 }
-.btn:hover, .btn:focus {
+.btn:hover,
+.btn:focus {
   box-shadow: 0 0;
-  transform: translateY(.25em)
+  transform: translateY(0.25em);
 }
 
 .menu-container {
@@ -168,7 +181,7 @@ td {
 }
 
 @keyframes menu-show {
-  0%{
+  0% {
     transform: scale(0);
   }
 }
@@ -178,9 +191,9 @@ td {
   width: 100%;
   margin-bottom: 1rem;
   border-radius: 8px;
-  background: linear-gradient(to bottom,#0087ff,#0058ff);
+  background: linear-gradient(to bottom, #0087ff, #0058ff);
   color: #fff;
-  box-shadow: 0 .25em, inset 0 0 4px #0004;
+  box-shadow: 0 0.25em, inset 0 0 4px #0004;
 }
 .playing .game-touch-wrapper {
   position: fixed;
