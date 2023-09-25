@@ -103,6 +103,7 @@ function tic() {
   head = newHead
 
   if (head[0] === coinPosition[0] && head[1] === coinPosition[1]) {
+    sounds.coin.play()
     coinPosition = addRandomCoin();
     score++
     document.querySelector(".score-container").textContent = score
@@ -120,7 +121,10 @@ let gameStoped = true;
 let gameOver = true;
 let speed = 100;
 let score = 0;
-
+let sounds = {
+  coin : seda("/assets/coin.wav"),
+  button : seda("/assets/button.wav"),
+}
 
 function init() {
   document.addEventListener("keyup", (e) => {
@@ -138,12 +142,14 @@ function init() {
         gameOver ? displayMenu("start") : (hideMenu() + start())
       } else {
         stop();
-      }
+      } 
     }
   })
 
   for (const btn of document.querySelectorAll("[data-onclick]")) {
     btn.addEventListener("click", () => {
+      sounds.button.play()
+      
       switch (btn.dataset.onclick) {
         case "restart":
           hideMenu()
@@ -266,5 +272,33 @@ function hideMenu() {
   currentMenu = undefined;
   document.querySelector(".menu-container").classList.add("hide")
 }
+
+//from codepen.io/kslstn/pen/pagLqL
+function seda(URL) {
+  let play = function play(audioBuffer) {
+    let source = context.createBufferSource();
+    source.buffer = audioBuffer;
+    source.connect(context.destination);
+    source.start();
+  };
+  let AudioContext = window.AudioContext || window.webkitAudioContext;
+  let context = new AudioContext(); // Make it crossbrowser
+  let gainNode = context.createGain();
+  gainNode.gain.value = 1; // set volume to 100%
+  let yodelBuffer = void 0;
+
+  window.fetch(URL)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => context.decodeAudioData(arrayBuffer,
+      audioBuffer => {
+        yodelBuffer = audioBuffer;
+      },
+      error =>
+        console.error(error)
+    ))
+
+  return { play: () => play(yodelBuffer) };
+}
+
 
 init()
