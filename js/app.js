@@ -122,8 +122,8 @@ let gameOver = true;
 let speed = 100;
 let score = 0;
 let sounds = {
-  coin : seda("/assets/coin.wav"),
-  button : seda("/assets/button.wav"),
+  coin : seda("../assets/coin.wav"),
+  button : seda("../assets/button.wav"),
 }
 
 function init() {
